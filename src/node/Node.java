@@ -18,9 +18,16 @@ public class Node {
         lista.agregarNodoalInicio(5);
         lista.agregarNodoalFinal(7);
         lista.agregarNodoalFinal(6);
-        lista.agregarNodoalN(57, 0);
+        lista.agregarNodoalN(57, 3);
+        
+        lista.eliminarNodoN(1);
+        lista.eliminarNodoN(1);
+        System.out.println("---------------------");
+        System.out.println(lista.BuscarNodoporIndice(1).dato);
         lista.printNodes();
         
+        System.out.println(lista.getTamaño());
+       
     }
     
 }
