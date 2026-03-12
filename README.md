@@ -1,7 +1,7 @@
 # 🔗 Proyecto: Listas Enlazadas y Listas Doblemente Enlazadas
 
 ![Estructuras de Datos](https://img.shields.io/badge/Estructuras%20de%20Datos-Listas%20Enlazadas-blue)
-![Lenguaje](https://img.shields.io/badge/Lenguaje-C%20%7C%20C%2B%2B%20%7C%20Java-green)
+![Lenguaje](https://img.shields.io/badge/Lenguaje-Java-green)
 ![Estado](https://img.shields.io/badge/Estado-Incompleto-yellow)
 
 ## 📌 Descripción
