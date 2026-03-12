@@ -135,15 +135,5 @@ public class Lista {
         return nodoauxiliar;
         
     }
-    public Nodo BuscarNodoporValor(int n){
-        if()
-        int cont = 1;
-        while(cont <= n){
-            cont++;
-            nodoauxiliar = nodoauxiliar.Siguiente;
-            
-        }
-        return nodoauxiliar;
-        
-    }
+    
 }
