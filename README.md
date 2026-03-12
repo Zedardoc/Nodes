@@ -63,6 +63,4 @@ Este proyecto utiliza conceptos fundamentales de **estructuras de datos**:
 
 ---
 
-# 🏗️ Estructura de los Nodos
-
-## Nodo de Lista Enlazada
+Para Compilar debe abrise desde NetBeans (Version 25)
