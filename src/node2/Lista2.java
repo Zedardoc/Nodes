@@ -54,6 +54,35 @@ public class Lista2 {
         tamaño++;
     }
     
+    public void agregarNodoalN(int dato, int n){
+        if(n == 0){
+            agregarNodoalInicio(dato);
+            tamaño++;
+            return;
+        }
+        else if(n==(tamaño)){
+            agregarNodoalFinal(dato);
+            tamaño++;
+            return;
+        }
+        else if(n>=tamaño){
+            System.out.println("Indice excede tamaño");
+            return;
+        }
+        Nodo2 nodoauxiliar = cabeza;
+        Nodo2 nuevonodo = new Nodo2(dato);
+        int contador = 0;
+        while(nodoauxiliar != null && contador < (n-1) ){
+            contador++;
+            nodoauxiliar = nodoauxiliar.Siguiente;
+        }
+        nuevonodo.Siguiente = nodoauxiliar.Siguiente;
+        nuevonodo.anterior = nodoauxiliar;
+        nodoauxiliar.Siguiente.anterior = nuevonodo;
+        nodoauxiliar.Siguiente = nuevonodo;
+        tamaño++;
+    }
+    
     public void printList(){  
         Nodo2 auxiliar = cabeza;
         System.out.println("Cabeza -> ");
