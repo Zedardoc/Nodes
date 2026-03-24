@@ -18,6 +18,9 @@ public class main {
         l2.agregarNodoalInicio(8);
         l2.agregarNodoalFinal(9);
         l2.agregarNodoalN(5, 2);
+        l2.eliminarNodoalInicio();
+        l2.eliminarNodoalFinal();
+        l2.eliminarNodoalN(0);
         l2.printList();
         
         

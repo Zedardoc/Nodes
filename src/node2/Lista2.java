@@ -39,6 +39,34 @@ public class Lista2 {
        tamaño++;
     }
     
+    public void eliminarNodoalInicio(){
+        if(tamaño == 0){
+            return;
+        } else if(tamaño == 1){
+            cabeza = null;
+            cola = null;
+        }
+        Nodo2 nodoauxiliar = cabeza.Siguiente;
+        nodoauxiliar.anterior = null;
+        cabeza = nodoauxiliar;
+        tamaño--;
+    }
+    
+    public void eliminarNodoalFinal(){
+        if(tamaño == 0){
+            return;
+        } else if(tamaño == 1){
+            cabeza = null;
+            cola = null;
+        }
+        Nodo2 nodoauxiliar = cola.anterior;
+        nodoauxiliar.Siguiente = null;
+        cola = nodoauxiliar;
+        tamaño--;
+    }
+    
+    
+    
     public void agregarNodoalFinal(int dato){
         Nodo2 nuevonodo = new Nodo2(dato);
         if(tamaño == 0){
@@ -81,6 +109,36 @@ public class Lista2 {
         nodoauxiliar.Siguiente.anterior = nuevonodo;
         nodoauxiliar.Siguiente = nuevonodo;
         tamaño++;
+    }
+    
+    public void eliminarNodoalN(int n){
+        if(tamaño == 0){
+            return;
+        } else
+        if(n == 0 && tamaño >=1){
+            eliminarNodoalInicio();
+            
+            return;
+            
+        } else
+        if(n == (tamaño-1)){
+            eliminarNodoalFinal();
+            
+            return;
+        }
+        Nodo2 nodoauxiliar = nodoauxiliar = cabeza;
+        int contador = 0;
+        while(contador < (n-1)){
+            contador++;
+            nodoauxiliar = nodoauxiliar.Siguiente;
+        }
+        Nodo2 nodoeliminado = nodoauxiliar.Siguiente;
+        nodoauxiliar.Siguiente = nodoauxiliar.Siguiente.Siguiente;
+        nodoauxiliar.Siguiente.anterior = nodoauxiliar;
+        nodoeliminado.anterior = null;
+        nodoeliminado.Siguiente=null;
+        tamaño--;
+        
     }
     
     public void printList(){  
