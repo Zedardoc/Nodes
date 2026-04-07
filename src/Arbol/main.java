@@ -10,6 +10,10 @@ package Arbol;
  */
 public class main {
     public static void main(String[] args) {
-      
+      ArbolBinario arbol = new ArbolBinario();
+      arbol.insertarNodo(4);
+      arbol.insertarNodo(3);
+      arbol.insertarNodo(5);
+      arbol.printArbol();
     }
 }
