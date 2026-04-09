@@ -19,7 +19,7 @@ public class ArbolBinario {
         raiz = insertarNodo(dato, raiz);
     }
 
-    public Nodo insertarNodo(int dato, Nodo padre){
+    private Nodo insertarNodo(int dato, Nodo padre){
         Nodo nuevonodo = new Nodo(dato);
         if(padre == null){
             
@@ -55,6 +55,99 @@ public class ArbolBinario {
                 nodos.add(nodo.hijoDerecho);
             }
         }
+    }
+    
+    public void recorrerPreOrden(Nodo recorre){
+        if(recorre != null){
+            System.out.println(recorre.dato);
+            recorrerPreOrden(recorre.hijoIzquierdo);
+            recorrerPreOrden(recorre.hijoDerecho);
+            
+        }
+    }
+    
+    public Nodo Busqueda(int dato){
+        Nodo nodorecorre = raiz;
+        boolean encontrado = false;
+        while(nodorecorre != null){
+            if(dato == nodorecorre.dato){
+                encontrado = true;
+                break;
+            }
+            else if(dato < nodorecorre.dato){
+                nodorecorre = nodorecorre.hijoIzquierdo;
+            } else if(dato >= nodorecorre.dato) {
+                nodorecorre = nodorecorre.hijoDerecho;
+            }
+                
+        }
+        if(encontrado){
+            return nodorecorre;
+        }
+        return null;
+    }
+    
+       public void eliminarNodoporDato(int dato){
+       //encontrar el nodo anterior
+       Nodo nodoanterior = null;
+       Nodo nodorecorre = raiz;
+        boolean encontrado = false;
+        while(nodorecorre != null){
+            if((nodorecorre.hijoDerecho!= null &&nodorecorre.hijoIzquierdo!= null) && dato == nodorecorre.hijoIzquierdo.dato || dato == nodorecorre.hijoDerecho.dato){
+                encontrado = true;
+                break;
+            }
+            else if(dato < nodorecorre.dato){
+                nodorecorre = nodorecorre.hijoIzquierdo;
+            } else if(dato >= nodorecorre.dato) {
+                nodorecorre = nodorecorre.hijoDerecho;
+            }
+                
+        }
+        if(encontrado){
+            nodoanterior = nodorecorre;
+        }
+        else {
+            return;
+        }
+        Nodo nodoeliminado;
+        if(nodoanterior.hijoDerecho.dato == dato){
+            nodoeliminado = nodoanterior.hijoDerecho;
+        } else{
+            nodoeliminado = nodoanterior.hijoIzquierdo;
+        }
+        if(nodoeliminado == null){
+            return;
+        }
+        
+        if(nodoeliminado.hijoIzquierdo !=null && nodoeliminado.hijoDerecho != null){
+            //comportamiento cuando dos hijos existen
+        } else if((nodoeliminado.hijoIzquierdo != null) ^ (nodoeliminado.hijoDerecho != null)){
+            //encontrar cual nodo es diferente de nulo
+            Nodo nodoauxiliar;
+            if(nodoeliminado.hijoIzquierdo != null){
+                nodoauxiliar = nodoeliminado.hijoIzquierdo;
+                nodoeliminado.hijoIzquierdo = null;
+            } else {
+                nodoauxiliar = nodoeliminado.hijoDerecho;
+                nodoeliminado.hijoDerecho = null;
+            }
+            
+            if(nodoanterior.hijoDerecho.dato == dato){
+                nodoanterior.hijoDerecho = nodoauxiliar;
+            } else {
+                nodoanterior.hijoIzquierdo = nodoauxiliar;
+            }
+        }
+        else {
+            if(nodoanterior.hijoDerecho.dato == dato){
+                nodoanterior.hijoDerecho = null;
+            } else{
+                nodoanterior.hijoIzquierdo = null;
+            }
+            
+        }
+        
     }
     public boolean isEmpty(){
         return (raiz == null);
