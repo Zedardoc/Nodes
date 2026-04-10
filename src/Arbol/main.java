@@ -14,11 +14,12 @@ public class main {
       arbol.insertarNodo(4);
       arbol.insertarNodo(3);
       arbol.insertarNodo(5);
-      arbol.insertarNodo(6);
       arbol.insertarNodo(7);
+      arbol.insertarNodo(6);
+      arbol.insertarNodo(8);
       //arbol.recorrerPreOrden(arbol.raiz);
       //System.out.println(arbol.Busqueda(5).dato);
-      arbol.eliminarNodoporDato(6);
+      arbol.eliminarNodoporDato(7);
       arbol.recorrerPreOrden(arbol.raiz);
       
     }

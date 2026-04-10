@@ -87,9 +87,16 @@ public class ArbolBinario {
         return null;
     }
     
-       public void eliminarNodoporDato(int dato){
-       //encontrar el nodo anterior
-       Nodo nodoanterior = null;
+    private Nodo encontrarHijoPorDato(Nodo padre, int dato){
+        if(padre.hijoDerecho.dato == dato){
+            return padre.hijoDerecho;
+        } else {
+            return padre.hijoIzquierdo;
+        }
+    }
+    
+    private Nodo encontrarNodoanterior(int dato){
+      
        Nodo nodorecorre = raiz;
         boolean encontrado = false;
         while(nodorecorre != null){
@@ -105,26 +112,42 @@ public class ArbolBinario {
                 
         }
         if(encontrado){
-            nodoanterior = nodorecorre;
+            return nodorecorre;
         }
         else {
-            return;
+            return null;
         }
+    }
+       public void eliminarNodoporDato(int dato){
+       //encontrar el nodo anterior
+       Nodo nodoanterior = encontrarNodoanterior(dato);
         Nodo nodoeliminado;
-        if(nodoanterior.hijoDerecho.dato == dato){
-            nodoeliminado = nodoanterior.hijoDerecho;
-        } else{
-            nodoeliminado = nodoanterior.hijoIzquierdo;
-        }
-        if(nodoeliminado == null){
-            return;
-        }
-        
+        nodoeliminado = encontrarHijoPorDato(nodoanterior, dato);
+        Nodo nodoauxiliar;
         if(nodoeliminado.hijoIzquierdo !=null && nodoeliminado.hijoDerecho != null){
             //comportamiento cuando dos hijos existen
+            //situarse un nodo antes al menor del sub arbol derecho
+            nodoauxiliar = nodoeliminado;
+            
+            if(nodoeliminado.hijoDerecho.hijoIzquierdo != null){
+                nodoauxiliar = nodoauxiliar.hijoDerecho;
+                while(nodoauxiliar.hijoIzquierdo.hijoIzquierdo != null){
+                    nodoauxiliar = nodoauxiliar.hijoIzquierdo;
+                }
+            } else{
+               if(nodoanterior.hijoDerecho.dato == nodoeliminado.dato){
+                   nodoanterior.hijoDerecho = nodoauxiliar;
+                   nodoauxiliar.hijoIzquierdo = nodoeliminado.hijoIzquierdo;
+                   nodoeliminado.hijoIzquierdo = null;
+                   nodoeliminado.hijoDerecho = null;
+               }
+            }
+            
+            Nodo nodomenor = nodoauxiliar.hijoIzquierdo;
+                    
         } else if((nodoeliminado.hijoIzquierdo != null) ^ (nodoeliminado.hijoDerecho != null)){
             //encontrar cual nodo es diferente de nulo
-            Nodo nodoauxiliar;
+            
             if(nodoeliminado.hijoIzquierdo != null){
                 nodoauxiliar = nodoeliminado.hijoIzquierdo;
                 nodoeliminado.hijoIzquierdo = null;
@@ -140,6 +163,7 @@ public class ArbolBinario {
             }
         }
         else {
+            //comporamiento cuando no tiene hijos
             if(nodoanterior.hijoDerecho.dato == dato){
                 nodoanterior.hijoDerecho = null;
             } else{
